@@ -1,0 +1,22 @@
+size,articulo,etiqueta,precio,visible,imagen
+3,Menú del día,M.Di ,70,1,iMDia.svg
+3,Menú con carne,M.Carne,85,1,iMCarne.svg
+3,Menú con pescado,M.Pescado,120,0,iMPescado.svg
+2,Guisado del día,G.Día,45,1,iGDia.svg
+2,Guisado para preparar,G.Preparado,50,1,iGCarne.svg
+2,Sopa/arroz,Sopa/Arroz,15,1,iSopa.svg
+2,Huevos al gusto,H.AlGusto,40,1,iHGusto.svg
+2,Enchiladas (4pz),Enchiladas,50,1,iEnchiladas.svg
+2,Tacos Dorados (4pz),T.Dorados,60,1,iTDorados.svg
+2,Pozole,Pozole,80,0,iPozole.svg
+2,Pancita,Pancita,75,0,iPancita.svg
+2,Caldo de Pollo,C.Pollo,45,0,iCPollo.svg
+1,Huevo,Huevo,5,1,IHuevo.svg
+1,Enchilada/TacoDorado(1pz),Ench(+1),6,1,iEnchiTaco.svg
+1,Albondiga,Alb(+1),10,1,IAlbondiga.svg
+1,Papas extra,Papas,15,1,iPapas.svg
+1,Refresco,Refresco,20,1,iRefresco.svg
+1,Agua del día (1/2 lt),A.Día,12,1,iADia.svg
+1,Café de la olla (Taza),Café,17,0,iCafeOlla.svg
+1,Pan Blanco (1pz),P.Blanco,4,0,iPanBlanco.svg
+1,Pan Dulce (1pz),P.Dulce,12,0,iPanDulce.svg

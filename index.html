@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LOLINDA - Comida Tradicional</title>
+  <!-- Hoja de estilos -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="main-container">
+
+  <!-- ENCABEZADO -->
+  <header class="app-header">
+    <h1 class="rest-name">LOLINDA <br><span>Comida Tradicional Mexicana</span></h1>
+  </header>
+
+  <!-- SECCIÓN USUARIO/CONFIG FUERA DEL HEADER -->
+  <section class="user-config-section">
+    <button class="btn-user" id="btn-user">
+      <img src="assets/icons/sUser.svg" alt="Cambiar Usuario"/>
+    </button>
+    <div class="user-label" id="user-label">Usuario</div>
+    <button class="btn-settings" id="btn-settings">
+      <img src="assets/icons/sEngrane.svg" alt="Configuraciones"/>
+    </button>
+  </section>
+
+  <!-- BOTÓN AGREGAR CUENTA -->
+  <section class="add-account-section">
+    <button id="btn-agregar-cuenta" class="btn-agregar-cuenta">
+      Agregar Cuenta
+    </button>
+  </section>
+
+  <!-- LISTADO DE CUENTAS -->
+  <section class="cuentas-list" id="cuentas-list">
+    <!-- Se llena dinámicamente -->
+  </section>
+
+</div>
+<!-- Fin .main-container -->
+
+
+<!-- MODAL 1: CONFIGURAR USUARIO -->
+<div class="modal-backdrop" id="modal-user-config">
+  <div class="modal-dialog user-config-dialog">
+    <h2>Tu nombre:</h2>
+    <label for="select-usuario">Selecciona nombre:</label>
+    <select id="select-usuario">
+      <option value="Otro">Otro</option>
+      <option value="Sandra">Sandra</option>
+      <option value="Paty">Paty</option>
+      <option value="Linda">Linda</option>
+      <option value="Wera">Wera</option>
+      <option value="Xochitl">Xochitl</option>
+    </select>
+
+    <label for="custom-username">Si elegiste 'Otro', escribe tu nombre:</label>
+    <input type="text" id="custom-username" value="usuario" />
+
+    <div class="modal-btn-row">
+      <button id="cancel-user-btn">Cancelar</button>
+      <button id="accept-user-btn">Aceptar</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- MODAL 2: CONFIGURACIONES -->
+<div class="modal-backdrop" id="modal-config">
+  <div class="modal-dialog config-dialog">
+    <h2>Configuraciones</h2>
+    <div class="config-btn-row">
+      <!-- Editar artículos -->
+      <button id="btn-edit-items" class="btn-config">
+        <img src="assets/icons/sIngredientes.svg" alt="Lista de Artículos"/>
+      </button>
+
+      <!-- Borrar Cuentas Pagadas -->
+      <button id="btn-delete-paid" class="btn-config">
+        <img src="assets/icons/sBasura.svg" alt="Borrar Cuentas Pagadas" />
+      </button>
+
+      <!-- Borrar TODAS las Cuentas -->
+      <button id="btn-delete-all" class="btn-config">
+        <img src="assets/icons/sBasura.svg" alt="Borrar TODAS las Cuentas" />
+      </button>
+    </div>
+
+    <div class="config-btn-row">
+      <!-- Botón para Reiniciar App (items.csv) -->
+      <button id="btn-restart-app" class="btn-config">
+        <img src="assets/icons/reload.svg" alt="Reiniciar App"/>
+      </button>
+    </div>
+
+    <div class="modal-btn-row">
+      <button id="btn-close-config">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- MODAL 3: CONFIRMAR BORRADO (GENÉRICO) -->
+<div class="modal-backdrop" id="modal-confirm-delete">
+  <div class="modal-dialog confirm-dialog">
+    <h3 id="confirm-delete-text">¿Estás seguro de borrar XYZ?</h3>
+    <div class="modal-btn-row">
+      <button id="confirm-delete-cancel">Cancelar</button>
+      <button id="confirm-delete-accept">Aceptar</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- MODAL 4: LISTA DE ARTÍCULOS (items.csv) -->
+<div class="modal-backdrop" id="modal-items-list">
+  <div class="modal-dialog items-list-dialog">
+    <h2>LISTA DE ARTÍCULOS:</h2>
+    <table class="items-table" id="items-table">
+      <thead>
+        <tr>
+          <th>Visible</th>
+          <th>Artículo</th>
+          <th>Precio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Se llena dinámicamente -->
+      </tbody>
+    </table>
+    <div class="modal-btn-row">
+      <button id="items-cancel-btn">Cancelar</button>
+      <button id="items-accept-btn">Aceptar</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- MODAL 5: PEDIDO (Ventana grande) -->
+<div class="modal-backdrop" id="modal-pedido">
+  <div class="modal-dialog pedido-dialog">
+
+    <div class="pedido-section">
+      <label for="pedido-nombre-cuenta">Cuenta:</label>
+      <input type="text" id="pedido-nombre-cuenta" />
+
+      <div class="switch-buttons">
+        <button id="switch-sumar">
+          <img src="assets/icons/sSumar.svg" alt="Sumar"/>
+        </button>
+        <button id="switch-restar">
+          <img src="assets/icons/sRestar.svg" alt="Restar"/>
+        </button>
+      </div>
+    </div>
+
+    <div class="pedido-section articles-container" id="articles-container">
+      <!-- Se crean recuadros dinámicamente -->
+    </div>
+
+    <div class="pedido-section ajuste-section">
+      <label for="ajuste-select">Concepto Ajuste:</label>
+      <select id="ajuste-select">
+        <option value="Extra">Extra</option>
+        <option value="Ajuste">Ajuste</option>
+        <option value="Descuento">Descuento</option>
+        <option value="Propina">Propina</option>
+      </select>
+      <label for="ajuste-valor">$</label>
+      <input type="number" id="ajuste-valor" value="0" min="0" />
+    </div>
+
+    <!-- Sección Propina con deslizador -->
+    <div class="pedido-section propina-section">
+      <div class="propina-info">
+        <span id="propina-porcentaje-label">Propina: 0%</span>
+        <span id="propina-monto-label">$0.00</span>
+      </div>
+      <!-- Range 0..100, se mapeará a 0..25 (60% del slider) y 30..100 en saltos de 5 (40% del slider) -->
+      <input type="range" id="propina-range" min="0" max="100" value="0"/>
+    </div>
+
+    <!-- Resultados finales -->
+    <div class="pedido-section resultado-section">
+      <!-- Botones 1.5× más grandes -->
+      <button id="btn-detalle-consumo" class="btn-icon big-icon">
+        <img src="assets/icons/sLista.svg" alt="Lista Detallada"/>
+      </button>
+      <button id="btn-cambio" class="btn-icon big-icon">
+        <img src="assets/icons/sCambio.svg" alt="Cambio"/>
+      </button>
+      <div class="total-label" id="total-label">$0.00</div>
+    </div>
+
+    <div class="modal-btn-row pedido-actions">
+      <button id="pedido-cancelar-btn" class="btn-cancelar">Cancelar</button>
+      <!-- Se habilitan/deshabilitan dinámicamente al tener monto > 0 -->
+      <button id="pedido-pendiente-btn" class="btn-pendiente" disabled>Pendiente</button>
+      <button id="pedido-pagado-btn" class="btn-pagado" disabled>Pagado</button>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- MODAL 6: LISTA DETALLADA DE CONSUMO (HTML) -->
+<div class="modal-backdrop" id="modal-detalle-consumo">
+  <div class="modal-dialog detalle-dialog">
+    <h2>LOLINDA</h2>
+    <h3>LISTA DE CONSUMO</h3>
+
+    <!-- Datos generales -->
+    <div class="detalle-info" id="detalle-info"></div>
+
+    <!-- Tabla de artículos -->
+    <table class="detalle-tabla" id="detalle-tabla">
+      <thead>
+        <tr>
+          <th>N</th>
+          <th>Artículo</th>
+          <th>Costo</th>
+          <th>Cant.</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Se llena dinámicamente -->
+      </tbody>
+    </table>
+
+    <!-- Totales -->
+    <div class="detalle-totales" id="detalle-totales"></div>
+
+    <div class="modal-btn-row">
+      <button id="detalle-enviar-btn">Enviar por WhatsApp</button>
+      <button id="detalle-cerrar-btn">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- MODAL 7: CALCULAR CAMBIO -->
+<div class="modal-backdrop" id="modal-cambio">
+  <div class="modal-dialog cambio-dialog">
+    <h2>Cambio a regresar</h2>
+    <div class="cambio-info">
+      <span id="cambio-total"></span>
+    </div>
+    <div class="cambio-info">
+      <label for="cambio-pago">Pago por: $</label>
+      <input type="number" id="cambio-pago" min="0" />
+    </div>
+    <div class="cambio-info">
+      <span id="cambio-resultado"></span>
+    </div>
+    <div class="modal-btn-row">
+      <button id="cambio-cerrar-btn">Aceptar</button>
+    </div>
+  </div>
+</div>
+
+
+<script src="js/app.js"></script>
+</body>
+</html>
